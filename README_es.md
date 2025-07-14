@@ -3,6 +3,8 @@
 - [ESPAÑOL](README_es.md)
 - [ENGLISH](README.md)
 
+Para evitar errores necesitaras Polars , Numpy y Rich
+
 **Data Generator** es una herramienta para generar datos mezclando datos reales y falsos. Ideal para crear:
 
 - Datos de prueba (.csv, .parquet).
