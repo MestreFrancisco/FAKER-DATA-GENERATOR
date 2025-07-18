@@ -3,7 +3,18 @@
 - [ESPAÑOL](README_es.md)
 - [ENGLISH](README.md)
 
-Para evitar errores necesitaras Polars , Numpy y Rich
+## Instrucciones
+- Clona el Repo
+```bash
+git clone https://github.com/MestreFrancisco/FAKER-DATA-GENERATOR
+```
+e instala las dependencias en un entorno virtual.
+
+```bash
+pip install -r requirements.txt
+```
+uso como base de datos sqlite3
+
 
 **Data Generator** es una herramienta para generar datos mezclando datos reales y falsos. Ideal para crear:
 
@@ -92,4 +103,5 @@ si  `table_builder.py` puede eliminarse por que no se usa dentro de `Classes` ni
 
 ### Índice 
 
-[Módulo `Base`](Documentation/Bases/lang/Es/Table_Builder.md)
+[Módulo `Table_Builder`](Documentation/Bases/lang/Es/Table_Builder.md)
+[Módulo `Base_Builder`](Documentation/Bases/lang/Es/Base_Builder.md)

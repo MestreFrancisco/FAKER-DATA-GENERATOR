@@ -3,7 +3,19 @@
 - [ESPAÑOL](README_es.md)
 - [ENGLISH](README.md)
 
-You need Polars , rich and numpy 🙂
+## Instructions
+- Clone the Repo
+```bash
+git clone https://github.com/MestreFrancisco/FAKER-DATA-GENERATOR
+```
+- Install dependencys
+
+```bash
+pip install -r requirements.txt
+```
+
+you can start working , this use sqlite3
+
 
 **Data Generator** is a tool for generating data by mixing real and fake data. Ideal for creating:
 
