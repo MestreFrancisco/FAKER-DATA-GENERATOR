@@ -17,6 +17,13 @@ Table Builder esta pensada para que puedas crear tus propios dataFrames con todo
 - 🥟 [Ejemplo del Método `add_options_as_column()`](#ejemplo-del-método-add_options_as_column)
   - [Descripción rápida del método](#--descripción-rápida-del-método)
   - [Ejemplo de uso](#ejemplo-de-uso)
+- 🥟 [Ejemplo del Método `add_interger_range_as_columns()`](#ejemplo-del-método-add_interger_range_as_columns)
+  - [Parámetros](#parámetros)
+  - [Ejemplo de uso](#ejemplo-de-uso)
+- 🥟 [Ejemplo del Método `add_float_range_as_columns()`](#ejemplo-del-método-add_float_range_as_columns)
+  - [Parámetros](#parámetros)
+  - [Ejemplo de uso (con redondeo)](#ejemplo-de-uso-con-redondeo)
+  - [Ejemplo de uso (sin redondeo)](#ejemplo-de-uso-sin-redondeo)
 - 🥟 [Ejemplo del Método `to_df()`](#ejemplo-del-método-to_df)
   - [Parámetros](#parámetros)
   - [Ejemplo de uso](#ejemplo-de-uso)
@@ -324,4 +331,130 @@ table_ex = Table("Personas")
 table_ex.add_persona_data_table(10)
 
 # Output: Persona table created! in 'dict_list' index → 0
+```
+
+## 🥟 Ejemplo del Método `add_interger_range_as_columns()`
+
+Este método permite añadir una nueva columna a una tabla con **valores enteros aleatorios** generados en un rango determinado. Cada fila de la tabla recibirá un número diferente dentro del rango especificado.
+
+---
+
+### 📌 Descripción rápida del método
+
+```python
+add_interger_range_as_columns(
+    table_index: int,
+    colname: str,
+    min: int,
+    max: int
+)
+```
+
+---
+
+### 📥 Parámetros
+
+| Parámetro     | Tipo   | Descripción                                                                 |
+|---------------|--------|-----------------------------------------------------------------------------|
+| `table_index` | `int`  | Índice de la tabla dentro de `dict_list`.                                   |
+| `colname`     | `str`  | Nombre de la nueva columna.                                                 |
+| `min`         | `int`  | Valor mínimo del número aleatorio (inclusive).                              |
+| `max`         | `int`  | Valor máximo del número aleatorio (inclusive).                              |
+
+---
+
+### 💡 Ejemplo de uso
+
+```python
+from Base.tabla_builder import Table
+from Classes.persona_class import Persona
+from rich import print
+
+# Creamos la tabla
+table_example = Table("Tabla con números aleatorios")
+table_example.add_persona_data_table(10)
+
+# Agregamos una columna con enteros aleatorios entre 1000 y 3000
+table_example.add_interger_range_as_columns(
+    table_index=0,
+    colname="Salario Bruto",
+    min=1000,
+    max=3000
+)
+
+print(table_example.dict_list[0])
+```
+
+---
+
+## 🥟 Ejemplo del Método `add_float_range_as_columns()`
+
+Este método añade una columna con **números decimales aleatorios** en cada fila de la tabla. Puedes controlar si quieres redondear los valores a dos decimales o no.
+
+---
+
+### 📌 Descripción rápida del método
+
+```python
+add_float_range_as_columns(
+    table_index: int,
+    colname: str,
+    min: float,
+    max: float,
+    isround: bool = True
+)
+```
+
+---
+
+### 📥 Parámetros
+
+| Parámetro     | Tipo     | Descripción                                                                 |
+|---------------|----------|-----------------------------------------------------------------------------|
+| `table_index` | `int`    | Índice de la tabla dentro de `dict_list`.                                   |
+| `colname`     | `str`    | Nombre de la nueva columna.                                                 |
+| `min`         | `float`  | Valor mínimo del número aleatorio.                                          |
+| `max`         | `float`  | Valor máximo del número aleatorio.                                          |
+| `isround`     | `bool`   | Si es `True`, redondea a 2 decimales. Si es `False`, deja el valor completo.|
+
+---
+
+### 💡 Ejemplo de uso (con redondeo)
+
+```python
+from Base.tabla_builder import Table
+from Classes.persona_class import Persona
+from rich import print
+
+# Creamos la tabla
+table_example = Table("Tabla con decimales")
+table_example.add_persona_data_table(10)
+
+# Agregamos una columna con decimales redondeados
+table_example.add_float_range_as_columns(
+    table_index=0,
+    colname="Puntaje de desempeño",
+    min=1.0,
+    max=5.0,
+    isround=True
+)
+
+print(table_example.dict_list[0])
+```
+
+---
+
+### 💡 Ejemplo de uso (sin redondeo)
+
+```python
+# Decimales sin redondear
+table_example.add_float_range_as_columns(
+    table_index=0,
+    colname="Puntaje crudo",
+    min=0.0,
+    max=1.0,
+    isround=False
+)
+
+print(table_example.dict_list[0])
 ```

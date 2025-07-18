@@ -19,6 +19,13 @@ The `Table` object has its own structure and behavior, so it's recommended to re
 - 🥟 [Example: `add_options_as_column()`](#example-of-the-add_options_as_column-method)
   - [Quick Description](#--quick-description)
   - [Usage Example](#usage-example)
+- 🥟 [Example: `add_interger_range_as_columns()`](#example-of-the-add_interger_range_as_columns-method)
+  - [Parameters](#parameters)
+  - [Usage Example](#usage-example)
+- 🥟 [Example: `add_float_range_as_columns()`](#example-of-the-add_float_range_as_columns-method)
+  - [Parameters](#parameters)
+  - [Usage Example (with rounding)](#usage-example-with-rounding)
+  - [Usage Example (without rounding)](#usage-example-without-rounding)
 - 🥟 [Example: `to_df()`](#example-to_df)
   - [Parameters](#parameters)
   - [Usage Example](#usage-example)
@@ -27,8 +34,7 @@ The `Table` object has its own structure and behavior, so it's recommended to re
   - [Usage Example](#-usage-example)
 - 🥟 [Example: `add_persona_data_table()`](#example-add_persona_data_table)
   - [Parameters](#-parameters)
-  - [Usage Example](#-usage-example)
-
+  -   [Usage Example](#-usage-example)
 ## Attributes
 
 | Attribute     | Type    | Description                                                                 |
@@ -298,7 +304,7 @@ Each `DataFrame` is saved with a name that includes the given prefix and its ind
 
 ---
 
-### 💡 Usage Example
+### Usage Example
 
 ```python
 # Assuming you have already converted tables to DataFrames
@@ -335,4 +341,129 @@ table_ex = Table("People")
 table_ex.add_persona_data_table(10)
 
 # Output: Persona table created! in 'dict_list' index → 0
+```
+## 🥟 Example of the Method `add_interger_range_as_columns()`
+
+This method allows you to add a new column to a table with **random integer values** generated within a specified range. Each row in the table will receive a different number within the given range.
+
+---
+
+### Quick method description add_interger_range_as_columns
+
+```python
+add_interger_range_as_columns(
+    table_index: int,
+    colname: str,
+    min: int,
+    max: int
+)
+```
+
+---
+
+###  Parameters add_interger_range_as_columns
+
+| Parameter     | Type   | Description                                                               |
+|---------------|--------|---------------------------------------------------------------------------|
+| `table_index` | `int`  | Index of the table inside `dict_list`.                                   |
+| `colname`     | `str`  | Name of the new column.                                                   |
+| `min`         | `int`  | Minimum value of the random integer (inclusive).                         |
+| `max`         | `int`  | Maximum value of the random integer (inclusive).                         |
+
+---
+
+### Usage example add_interger_range_as_columns
+
+```python
+from Base.tabla_builder import Table
+from Classes.persona_class import Persona
+from rich import print
+
+# Create the table
+table_example = Table("Table with random integers")
+table_example.add_persona_data_table(10)
+
+# Add a column with random integers between 1000 and 3000
+table_example.add_interger_range_as_columns(
+    table_index=0,
+    colname="Gross Salary",
+    min=1000,
+    max=3000
+)
+
+print(table_example.dict_list[0])
+```
+
+---
+
+## Example of the Method `add_float_range_as_columns()`
+
+This method adds a column with **random decimal numbers** to each row of the table. You can control whether to round the values to two decimals or not.
+
+---
+
+###  Quick method description
+
+```python
+add_float_range_as_columns(
+    table_index: int,
+    colname: str,
+    min: float,
+    max: float,
+    isround: bool = True
+)
+```
+
+---
+
+### 📥 Parameters
+
+| Parameter     | Type     | Description                                                               |
+|---------------|----------|---------------------------------------------------------------------------|
+| `table_index` | `int`    | Index of the table inside `dict_list`.                                   |
+| `colname`     | `str`    | Name of the new column.                                                   |
+| `min`         | `float`  | Minimum value of the random number.                                      |
+| `max`         | `float`  | Maximum value of the random number.                                      |
+| `isround`     | `bool`   | If `True`, rounds to 2 decimals. If `False`, keeps the full value.       |
+
+---
+
+###  Usage example (with rounding)
+
+```python
+from Base.tabla_builder import Table
+from Classes.persona_class import Persona
+from rich import print
+
+# Create the table
+table_example = Table("Table with decimals")
+table_example.add_persona_data_table(10)
+
+# Add a column with rounded decimals
+table_example.add_float_range_as_columns(
+    table_index=0,
+    colname="Performance Score",
+    min=1.0,
+    max=5.0,
+    isround=True
+)
+
+print(table_example.dict_list[0])
+```
+
+---
+
+### Usage example (without rounding)
+
+```python
+# Decimals without rounding
+table_example.add_float_range_as_columns(
+    table_index=0,
+    colname="Raw Score",
+    min=0.0,
+    max=1.0,
+    isround=False
+)
+
+print(table_example.dict_list[0])
 ```
