@@ -71,6 +71,46 @@ class Table:
         for row in table:
             row[colname] = random.choice(options)
     
+    #--------New Function FROM 1.1 (add function)
+    def add_interger_range_as_columns(self, table_index, colname, min , max):
+        """Adds a new column with random integers within a specified range to each row of a table.
+
+        Parameters:
+        - table_index (int): Index of the table within the dict_list.
+        - colname (str): Name of the new column to be added.
+        - min (int): Minimum value of the random integer (inclusive).
+        - max (int): Maximum value of the random integer (inclusive).
+
+        Returns:
+        None. The method modifies the table in place. """
+        table = self.dict_list[table_index]
+        for row in table:
+            row[colname] = random.randint(min,max)
+            
+    
+    #--------New Function FROM 1.1 (add function)
+    def add_float_range_as_columns(self, table_index, colname, min:float , max:float,isround=True):
+        """Adds a new column with random floating-point numbers within a specified range to each row of a table.
+
+        Parameters:
+        - table_index (int): Index of the table within the dict_list.
+        - colname (str): Name of the new column to be added.
+        - min (float): Minimum value of the random float.
+        - max (float): Maximum value of the random float.
+        - isround (bool): If True, round the float to 2 decimal places. Default is True.
+
+        Returns:
+        None. The method modifies the table in place."""
+        table = self.dict_list[table_index]
+        
+        if isround==True:
+            for row in table:
+                row[colname] = round(random.uniform(min,max),2)
+        else:
+            for row in table:
+                row[colname] = random.uniform(min,max)
+    
+    
     def to_df(self,table_index):
         
          table = self.dict_list[table_index]
@@ -96,7 +136,7 @@ class Table:
         list_of_p=[]
         
         for i in range(size):
-            p = Persona(i)
+            p = Persona(i+1)
 
             list_of_p.append(p.to_dict())
         
